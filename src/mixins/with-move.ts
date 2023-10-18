@@ -1,4 +1,4 @@
-import { Container } from 'pixi.js'
+import { Container, Point } from 'pixi.js'
 import { Tween, Easing } from '@tweenjs/tween.js'
 
 export const withMove = <TBase extends new (...args: any[]) => Container>(Base: TBase) => {
@@ -9,9 +9,12 @@ export const withMove = <TBase extends new (...args: any[]) => Container>(Base: 
       super(...args)
     }
 
-    move(x: number, y: number, duration = 1000) {
+    move(point: Point, duration = 1000) {
       this.tween?.stop()
-      this.tween = new Tween(this.position).to({ x, y }, duration).easing(Easing.Sinusoidal.Out).start()
+      this.tween = new Tween(this.position)
+        .to({ x: point.x, y: point.y }, duration)
+        .easing(Easing.Sinusoidal.Out)
+        .start()
     }
   }
 }
