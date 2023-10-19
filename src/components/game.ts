@@ -31,6 +31,6 @@ export class Game extends Container {
   }
 
   moveTumbleweed(point: Point) {
-    this.tumbleweed.move(point, 800)
+    this.tumbleweed.moveCurved(point, 800)
   }
 }
