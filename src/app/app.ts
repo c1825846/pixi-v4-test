@@ -42,9 +42,12 @@ export class App {
     })
 
     this.game = new Game()
-    this.game.once('pointerup', () => {
-      openFullscreen(this.appContainer)
-    })
+    const isOnMobile = checkIsOnMobile()
+    if (isOnMobile) {
+      this.game.once('pointerup', () => {
+        openFullscreen(this.appContainer)
+      })
+    }
     this.app.stage.addChild(this.game)
 
     window.addEventListener('resize', () => {
