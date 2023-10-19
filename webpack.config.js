@@ -23,15 +23,21 @@ module.exports = {
                 use: [
                     {
                         loader: 'file-loader',
-                        options: {
-                            name: `[path][name].[contenthash].[ext]`,
-                        },
                     },
                 ],
             },
             {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
+            },
+            {
+                type: 'javascript/auto',
+                test: /\.(json|fnt|xml)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                    },
+                ],
             },
         ],
     },

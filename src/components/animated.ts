@@ -1,11 +1,14 @@
-import { Sprite, Texture } from 'pixi.js'
+import { Texture, extras } from 'pixi.js'
 
-export class Animated extends Sprite {
-  constructor(texture: Texture) {
-    super(texture)
+export class Animated extends extras.AnimatedSprite {
+  constructor(textures: Texture[]) {
+    super(textures)
 
     this.anchor.set(0.5)
   }
 
-  play() {}
+  play(animationSpeed = 1) {
+    this.animationSpeed = animationSpeed
+    super.play()
+  }
 }
