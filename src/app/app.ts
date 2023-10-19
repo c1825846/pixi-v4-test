@@ -50,17 +50,19 @@ export class App {
     const windowAspectRatio = windowWidth / windowHeght
     const targetViewAspectRatio = 5 / 3
 
+    let gameScalar = 1
+
     if (windowAspectRatio <= targetViewAspectRatio) {
       this.app.view.width = isOnMobile ? windowWidth : Math.min(windowWidth, 1280)
       this.app.view.height = this.app.view.width / targetViewAspectRatio
+      gameScalar = this.app.view.width / 1000
     } else {
       this.app.view.height = isOnMobile ? windowHeght : Math.min(windowHeght, 768)
       this.app.view.width = this.app.view.height * targetViewAspectRatio
+      gameScalar = this.app.view.height / 600
     }
 
-    this.game.width = this.app.view.width
-    this.game.height = this.app.view.height
-
+    this.game.scale.set(gameScalar)
     this.app.renderer.resize(this.app.view.width, this.app.view.height)
   }
 }
